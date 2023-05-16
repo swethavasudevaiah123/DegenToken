@@ -6,14 +6,21 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Degen is ERC20, ERC20Burnable, Ownable {
-    constructor() ERC20("Degen", "DGN") {}
+    
+    string public store_items;
+    constructor() ERC20("Degen", "DGN") {
+        store_items="The following storing store items are 1. Official Degen Shirt 2. Official Degen Stickers. 3. Official Degen Mug";
+    }
 
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount);
     }
 
 
-    function redeem(uint256 amt) public{
-        _burn(msg.sender, amt);
+    function redeem(uint256 number) public{
+        _burn(msg.sender, number);
+        
     }
+
+
 }
