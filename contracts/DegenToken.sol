@@ -8,7 +8,9 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract Degen is ERC20, ERC20Burnable, Ownable {
     
     string public store_items;
+    mapping(address=>uint) public balances;
     constructor() ERC20("Degen", "DGN") {
+        
         store_items="The following storing store items are 1. Official Degen Shirt 2. Official Degen Stickers. 3. Official Degen Mug";
     }
 
@@ -18,7 +20,14 @@ contract Degen is ERC20, ERC20Burnable, Ownable {
 
 
     function redeem(uint256 number) public{
-        _burn(msg.sender, number);
+        if(number>3 || number==0){
+            revert("Enter a value from 1-3 since there are 3 items to redeem");
+        }
+        else{
+            
+            _burn(msg.sender, number*100);
+        
+        }
         
     }
 
