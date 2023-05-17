@@ -24,7 +24,7 @@ contract Degen is ERC20, ERC20Burnable, Ownable {
             revert("Enter a value from 1-3 since there are 3 items to redeem");
         }
         else{
-            
+            require(balanceOf(msg.sender)>100, "Minimum of 100 tokens are required");
             _burn(msg.sender, number*100);
         
         }
